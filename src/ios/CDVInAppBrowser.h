@@ -29,7 +29,7 @@
 
 @class CDVInAppBrowserViewController;
 
-@interface CDVInAppBrowser : CDVPlugin {
+@interface CDVInAppBrowser : CDVPlugin <UIPopoverControllerDelegate, UIDocumentInteractionControllerDelegate> {
     BOOL _injectedIframeBridge;
 }
 
@@ -41,6 +41,7 @@
 - (void)close:(CDVInvokedUrlCommand*)command;
 - (void)injectScriptCode:(CDVInvokedUrlCommand*)command;
 - (void)show:(CDVInvokedUrlCommand*)command;
+- (void)share:(CDVInvokedUrlCommand*)command;
 
 @end
 
@@ -52,6 +53,7 @@
 @property (nonatomic, copy) NSString* toolbarposition;
 @property (nonatomic, assign) BOOL clearcache;
 @property (nonatomic, assign) BOOL clearsessioncache;
+
 
 @property (nonatomic, copy) NSString* presentationstyle;
 @property (nonatomic, copy) NSString* transitionstyle;
@@ -85,11 +87,19 @@
 
 @property (nonatomic, strong) IBOutlet UIWebView* webView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* closeButton;
-@property (nonatomic, strong) IBOutlet UILabel* addressLabel;
+//@property (nonatomic, strong) IBOutlet UILabel* addressLabel;
+
+@property (nonatomic, strong) IBOutlet UILabel* titleLabel;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* backButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* forwardButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem* stopButton;
+
+@property (nonatomic, strong) IBOutlet UIBarButtonItem* refreshButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem* shareButton;
+
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView* spinner;
-@property (nonatomic, strong) IBOutlet UIToolbar* toolbar;
+@property (nonatomic, strong) IBOutlet UIToolbar* toolbarTop;
+@property (nonatomic, strong) IBOutlet UIToolbar* toolbarBottom;
 
 @property (nonatomic, weak) id <CDVScreenOrientationDelegate> orientationDelegate;
 @property (nonatomic, weak) CDVInAppBrowser* navigationDelegate;

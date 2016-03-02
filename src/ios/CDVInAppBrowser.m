@@ -662,7 +662,7 @@ NSString* _optLoading;
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return UIStatusBarStyleBlackOpaque;
+    return UIStatusBarStyleDefault;
 }
 
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -767,6 +767,7 @@ NSString* _optLoading;
 
     UIColor *myBackground = [self getUIColorObjectFromHexString:background alpha:1];
     UIColor *myColor = [self getUIColorObjectFromHexString:color alpha:1];
+
     self.toolbarTop.barTintColor= myBackground;
     self.backButton.tintColor = myColor;
 
@@ -774,10 +775,8 @@ NSString* _optLoading;
 
     self.view.backgroundColor = myBackground;
 
-    [[UINavigationBar appearance] setBarTintColor:myBackground];
-    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    [[UINavigationBar appearance] setBarTintColor:myColor];
 
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     self.loadingLabel.text = loading;
     self.titleLabel.text = title;
@@ -810,9 +809,9 @@ NSString* _optLoading;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    if (IsAtLeastiOSVersion(@"7.0")) {
-//        [[UIApplication sharedApplication] setStatusBarStyle:[self preferredStatusBarStyle]];
-//    }
+    if (IsAtLeastiOSVersion(@"7.0")) {
+        [[UIApplication sharedApplication] setStatusBarStyle:[self preferredStatusBarStyle]];
+    }
     [self rePositionViews];
 //
 
@@ -863,6 +862,9 @@ NSString* _optLoading;
 
 //    self.backButton.enabled = theWebView.canGoBack;
     self.forwardButton.enabled = theWebView.canGoForward;
+
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 
     NSDictionary* itemTextAttributesBlue = @{NSFontAttributeName:[UIFont systemFontOfSize:24.0f], NSForegroundColorAttributeName:[UIColor colorWithRed:19/255.0 green:144/255.0 blue:255/255.0 alpha:1.0], NSBackgroundColorAttributeName:[UIColor lightGrayColor]};
 

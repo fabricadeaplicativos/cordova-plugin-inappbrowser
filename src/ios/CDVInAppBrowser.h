@@ -27,6 +27,9 @@
     #import <Cordova/CDVWebViewDelegate.h>
 #endif
 
+
+
+
 @class CDVInAppBrowserViewController;
 
 @interface CDVInAppBrowser : CDVPlugin <UIPopoverControllerDelegate, UIDocumentInteractionControllerDelegate> {
@@ -35,6 +38,9 @@
 
 @property (nonatomic, retain) CDVInAppBrowserViewController* inAppBrowserViewController;
 @property (nonatomic, copy) NSString* callbackId;
+
+
+
 @property (nonatomic, copy) NSRegularExpression *callbackIdPattern;
 
 - (void)open:(CDVInvokedUrlCommand*)command;
@@ -58,6 +64,9 @@
 @property (nonatomic, copy) NSString* presentationstyle;
 @property (nonatomic, copy) NSString* transitionstyle;
 
+
+
+
 @property (nonatomic, assign) BOOL enableviewportscale;
 @property (nonatomic, assign) BOOL mediaplaybackrequiresuseraction;
 @property (nonatomic, assign) BOOL allowinlinemediaplayback;
@@ -65,6 +74,11 @@
 @property (nonatomic, assign) BOOL suppressesincrementalrendering;
 @property (nonatomic, assign) BOOL hidden;
 @property (nonatomic, assign) BOOL disallowoverscroll;
+
+
+
+
+
 
 + (CDVInAppBrowserOptions*)parseOptions:(NSString*)options;
 
@@ -75,14 +89,15 @@
     NSString* _userAgent;
     NSString* _prevUserAgent;
     NSInteger _userAgentLockToken;
+
     CDVInAppBrowserOptions *_browserOptions;
-    
+
 #ifdef __CORDOVA_4_0_0
     CDVUIWebViewDelegate* _webViewDelegate;
 #else
     CDVWebViewDelegate* _webViewDelegate;
 #endif
-    
+
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView* webView;
@@ -90,9 +105,13 @@
 //@property (nonatomic, strong) IBOutlet UILabel* addressLabel;
 
 @property (nonatomic, strong) IBOutlet UILabel* titleLabel;
-@property (nonatomic, strong) IBOutlet UIBarButtonItem* backButton;
+@property (nonatomic, strong) IBOutlet UILabel* loadingLabel;
+@property (nonatomic, strong) IBOutlet UIButton* backButton;
+@property (nonatomic, strong) IBOutlet UIImage* btnImage;
+
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* forwardButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* stopButton;
+
 
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* refreshButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* shareButton;
@@ -105,8 +124,11 @@
 @property (nonatomic, weak) CDVInAppBrowser* navigationDelegate;
 @property (nonatomic) NSURL* currentURL;
 
+
+- (UIColor *)getUIColorObjectFromHexString;
+- (unsigned int)intFromHexString;
 - (void)close;
-- (void)navigateTo:(NSURL*)url;
+- (void)navigateTo:(NSURL*)url background:(NSString*)background color:(NSString*)color title:(NSString*)title loading:(NSString*)loading;
 - (void)showLocationBar:(BOOL)show;
 - (void)showToolBar:(BOOL)show : (NSString *) toolbarPosition;
 - (void)setCloseButtonTitle:(NSString*)title;
@@ -120,4 +142,3 @@
 @property (nonatomic, weak) id <CDVScreenOrientationDelegate> orientationDelegate;
 
 @end
-

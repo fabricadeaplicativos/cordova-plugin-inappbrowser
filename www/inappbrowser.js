@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-inappbrowser.inappbrowser", function(require, exports, module) { /*
+cordova.define("universo-plugin-inappbrowser.inappbrowser", function(require, exports, module) { /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file

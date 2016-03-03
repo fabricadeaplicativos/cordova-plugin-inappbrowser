@@ -36,8 +36,7 @@
     <!-- android -->
     <platform name="android">
         <js-module src="www/inappbrowser.js" name="inappbrowser">
-            <clobbers target="universo.InAppBrowser.open" />
-            <clobbers target="window.open" />
+            <clobbers target="cordova.InAppBrowser.open" />
         </js-module>
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="InAppBrowser">
@@ -71,7 +70,6 @@
     <platform name="ios">
         <js-module src="www/inappbrowser.js" name="inappbrowser">
             <clobbers target="cordova.InAppBrowser.open" />
-            <clobbers target="window.open" />
         </js-module>
         <config-file target="config.xml" parent="/*">
             <feature name="InAppBrowser">
@@ -82,6 +80,7 @@
         <header-file src="src/ios/CDVInAppBrowser.h" />
 	    <source-file src="src/ios/CDVInAppBrowser.m" />
 	    <resource-file src="src/ios/ios7-arrow-left.png" target="res/ios7-arrow-left.png" />
+        <resource-file src="src/ios/ios7-arrow-left@2x.png" target="res/ios7-arrow-left@2x.png" />
 	    <framework src="CoreGraphics.framework" />
     </platform>
 
@@ -90,7 +89,6 @@
     <platform name="browser">
         <js-module src="www/inappbrowser.js" name="inappbrowser">
             <clobbers target="cordova.InAppBrowser.open" />
-            <clobbers target="window.open" />
         </js-module>
         <js-module src="src/browser/InAppBrowserProxy.js" name="InAppBrowserProxy">
             <merges target="" />

@@ -48,21 +48,17 @@
         <source-file src="src/android/InAppBrowserDialog.java" target-dir="src/org/apache/cordova/inappbrowser" />
         <source-file src="src/android/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" />
 
-        <!--  drawable src/android/resources -->
-        <resource-file src="src/android/res/drawable-hdpi/ic_action_next_item.png" target="res/drawable-hdpi/ic_action_next_item.png" />
-        <resource-file src="src/android/res/drawable-mdpi/ic_action_next_item.png" target="res/drawable-mdpi/ic_action_next_item.png" />
-        <resource-file src="src/android/res/drawable-xhdpi/ic_action_next_item.png" target="res/drawable-xhdpi/ic_action_next_item.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_next_item.png" target="res/drawable-xxhdpi/ic_action_next_item.png" />
+        <resource-file src="src/android/res/drawable-hdpi/android-black-arrow-left.png" target="res/drawable-hdpi/android-black-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-hdpi/android-white-arrow-left.png" target="res/drawable-hdpi/android-white-arrow-left.png" />
 
-        <resource-file src="src/android/res/drawable-hdpi/ic_action_previous_item.png" target="res/drawable-hdpi/ic_action_previous_item.png" />
-        <resource-file src="src/android/res/drawable-mdpi/ic_action_previous_item.png" target="res/drawable-mdpi/ic_action_previous_item.png" />
-        <resource-file src="src/android/res/drawable-xhdpi/ic_action_previous_item.png" target="res/drawable-xhdpi/ic_action_previous_item.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_previous_item.png" target="res/drawable-xxhdpi/ic_action_previous_item.png" />
+        <resource-file src="src/android/res/drawable-mdpi/android-black-arrow-left.png" target="res/drawable-mdpi/android-black-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-mdpi/android-white-arrow-left.png" target="res/drawable-mdpi/android-white-arrow-left.png" />
 
-        <resource-file src="src/android/res/drawable-hdpi/ic_action_remove.png" target="res/drawable-hdpi/ic_action_remove.png" />
-        <resource-file src="src/android/res/drawable-mdpi/ic_action_remove.png" target="res/drawable-mdpi/ic_action_remove.png" />
-        <resource-file src="src/android/res/drawable-xhdpi/ic_action_remove.png" target="res/drawable-xhdpi/ic_action_remove.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_remove.png" target="res/drawable-xxhdpi/ic_action_remove.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/android-black-arrow-left.png" target="res/drawable-xhdpi/android-black-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/android-white-arrow-left.png" target="res/drawable-xhdpi/android-white-arrow-left.png" />
+
+        <resource-file src="src/android/res/drawable-xxhdpi/android-black-arrow-left.png" target="res/drawable-xxhdpi/android-black-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/android-white-arrow-left.png" target="res/drawable-xxhdpi/android-white-arrow-left.png" />
 
     </platform>
 

@@ -58,7 +58,7 @@
         <resource-file src="src/android/res/drawable-xhdpi/androidwhitearrowleft.png" target="res/drawable-xhdpi/androidwhitearrowleft.png" />
 
         <resource-file src="src/android/res/drawable-xxhdpi/androidblackarrowleft.png" target="res/drawable-xxhdpi/androidblackarrowleft.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/androidwhitearrowleft.png" target="res/drawable-xxhdpi/android-white-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/androidwhitearrowleft.png" target="res/drawable-xxhdpi/androidwhitearrowleft.png" />
 
     </platform>
 

@@ -48,17 +48,17 @@
         <source-file src="src/android/InAppBrowserDialog.java" target-dir="src/org/apache/cordova/inappbrowser" />
         <source-file src="src/android/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" />
 
-        <resource-file src="src/android/res/drawable-hdpi/android-black-arrow-left.png" target="res/drawable-hdpi/android-black-arrow-left.png" />
-        <resource-file src="src/android/res/drawable-hdpi/android-white-arrow-left.png" target="res/drawable-hdpi/android-white-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-hdpi/androidblackarrowleft.png" target="res/drawable-hdpi/androidblackarrowleft.png" />
+        <resource-file src="src/android/res/drawable-hdpi/androidwhitearrowleft.png" target="res/drawable-hdpi/androidwhitearrowleft.png" />
 
-        <resource-file src="src/android/res/drawable-mdpi/android-black-arrow-left.png" target="res/drawable-mdpi/android-black-arrow-left.png" />
-        <resource-file src="src/android/res/drawable-mdpi/android-white-arrow-left.png" target="res/drawable-mdpi/android-white-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-mdpi/androidblackarrowleft.png" target="res/drawable-mdpi/androidblackarrowleft.png" />
+        <resource-file src="src/android/res/drawable-mdpi/androidwhitearrowleft.png" target="res/drawable-mdpi/androidwhitearrowleft.png" />
 
-        <resource-file src="src/android/res/drawable-xhdpi/android-black-arrow-left.png" target="res/drawable-xhdpi/android-black-arrow-left.png" />
-        <resource-file src="src/android/res/drawable-xhdpi/android-white-arrow-left.png" target="res/drawable-xhdpi/android-white-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/androidblackarrowleft.png" target="res/drawable-xhdpi/androidblackarrowleft.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/androidwhitearrowleft.png" target="res/drawable-xhdpi/androidwhitearrowleft.png" />
 
-        <resource-file src="src/android/res/drawable-xxhdpi/android-black-arrow-left.png" target="res/drawable-xxhdpi/android-black-arrow-left.png" />
-        <resource-file src="src/android/res/drawable-xxhdpi/android-white-arrow-left.png" target="res/drawable-xxhdpi/android-white-arrow-left.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/androidblackarrowleft.png" target="res/drawable-xxhdpi/androidblackarrowleft.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/androidwhitearrowleft.png" target="res/drawable-xxhdpi/android-white-arrow-left.png" />
 
     </platform>
 

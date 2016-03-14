@@ -51,7 +51,7 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ProgressBar;
-
+import android.graphics.drawable.GradientDrawable;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Config;
@@ -548,7 +548,12 @@ public class InAppBrowser extends CordovaPlugin {
                 LinearLayout main = new LinearLayout(cordova.getActivity());
                 main.setOrientation(LinearLayout.VERTICAL);
 
+                RelativeLayout toolbarContainer = new RelativeLayout(cordova.getActivity());
+                toolbarContainer.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, this.dpToPixels(56)));
+                toolbarContainer.setBackgroundColor(0xFF000000);
+
                 // Toolbar layout
+
                 RelativeLayout toolbar = new RelativeLayout(cordova.getActivity());
                 //Please, no more black!
                 toolbar.setBackgroundColor(Color.parseColor(optBackground));
@@ -558,7 +563,20 @@ public class InAppBrowser extends CordovaPlugin {
                 toolbar.setVerticalGravity(Gravity.TOP);
 
 
+                GradientDrawable gd = new GradientDrawable(
+                        GradientDrawable.Orientation.TOP_BOTTOM,
+                        new int[] {0xFF000000,0x00000000});
 
+                gd.setCornerRadius(0f);
+
+
+                RelativeLayout toolbarShadow = new RelativeLayout(cordova.getActivity());
+                toolbarShadow.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, this.dpToPixels(4)));
+                toolbarShadow.setAlpha(0.5f);
+                // toolbarContainer.setBackgroundDrawable(gd);
+                // toolbar.setBackgroundDrawable(gd);
+                toolbarShadow.setBackgroundDrawable(gd);
+                // toolbar.setBackgroundDrawable(gd);
 
                 ProgressBar progressBar = new ProgressBar(cordova.getActivity());
 
@@ -757,8 +775,8 @@ public class InAppBrowser extends CordovaPlugin {
                 actionButtonContainer.addView(close);
                 // Add the views to our toolbar
                 toolbar.addView(actionButtonContainer);
-
                 inAppWebView.addView(progress);
+                inAppWebView.addView(toolbarShadow);
 
                 toolbar.addView(title);
                 // toolbar.addView(edittext);
@@ -767,6 +785,8 @@ public class InAppBrowser extends CordovaPlugin {
                 // Don't add the toolbar if its been disabled
                 if (getShowLocationBar()) {
                     // Add our toolbar to our main view/layout
+                    // toolbarContainer.addView(toolbar);
+                    // toolbarContainer.addView();
                     main.addView(toolbar);
                 }
 

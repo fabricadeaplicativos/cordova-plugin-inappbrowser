@@ -94,19 +94,24 @@
 
 #ifdef __CORDOVA_4_0_0
     CDVUIWebViewDelegate* _webViewDelegate;
+    CDVUIWebViewDelegate* _webViewBannerDelegate;
 #else
     CDVWebViewDelegate* _webViewDelegate;
+    CDVWebViewDelegate* _webViewBannerDelegate;
 #endif
 
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView* webView;
+@property (nonatomic, strong) IBOutlet UIWebView* bannerView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* closeButton;
 //@property (nonatomic, strong) IBOutlet UILabel* addressLabel;
 
 @property (nonatomic, strong) IBOutlet UILabel* titleLabel;
+@property (nonatomic, strong) IBOutlet UIImageView* bannerImage;
 @property (nonatomic, strong) IBOutlet UILabel* loadingLabel;
 @property (nonatomic, strong) IBOutlet UIButton* backButton;
+@property (nonatomic, strong) IBOutlet UIButton* bannerButton;
 @property (nonatomic, strong) IBOutlet UIImage* btnImage;
 
 @property (nonatomic, strong) IBOutlet UIBarButtonItem* forwardButton;

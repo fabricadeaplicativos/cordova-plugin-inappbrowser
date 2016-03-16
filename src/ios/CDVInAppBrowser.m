@@ -37,6 +37,8 @@ NSString* _optTitle;
 NSString* _optColor;
 NSString* _optBackground;
 NSString* _optLoading;
+NSString* _optBanner;
+NSString* _optUrlBanner;
 
 
 
@@ -88,6 +90,8 @@ NSString* _optLoading;
     _optColor = [command argumentAtIndex:4];
     _optBackground = [command argumentAtIndex:5];
     _optLoading = [command argumentAtIndex:6];
+    _optBanner = [command argumentAtIndex:7];
+    _optUrlBanner = [command argumentAtIndex:8];
 
     self.callbackId = command.callbackId;
 
@@ -497,6 +501,16 @@ NSString* _optLoading;
     return self;
 }
 
+- (BOOL)bannerView:(UIWebView*)webview shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (navigationType == UIWebViewNavigationTypeLinkClicked ) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return NO;
+    }
+
+    return YES;
+}
+
 // Prevent crashes on closing xs
 -(void)dealloc {
     self.webView.delegate = nil;
@@ -591,6 +605,7 @@ NSString* _optLoading;
     self.loadingLabel.text = @"carregando";
 
 
+
     // ****** TOOLBAR TOP ********
 
     CGRect toolbarFrameTop = CGRectMake(0.0, 0.0, self.view.bounds.size.width, 60.0f);
@@ -619,6 +634,37 @@ NSString* _optLoading;
 
 
 
+    self.bannerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
+    self.bannerButton.frame = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.view.bounds.size.width / 6.4f);
+//    self.bannerButton.backgroundColor = [UIColor whiteColor];
+    [self.bannerButton addTarget:self action:@selector(openBanner) forControlEvents:UIControlEventTouchDown];
+
+
+    NSString* _htmlCon = [NSString stringWithFormat:@"%@%@%@", @"<html><head><title></title></head><body style=\"background-color:'#333'; margin:0px; padding:0px;\"><img src=\"" , _optBanner , @"\" style=\"width:100%;\" /></body></html>"];
+
+    NSMutableString *html = [NSMutableString stringWithString:_htmlCon] ;
+
+
+    CGRect bannerViewBounds = self.view.bounds;
+    bannerViewBounds.size.height = self.view.bounds.size.width / 6.4f;
+    self.bannerView = [[UIWebView alloc] initWithFrame:bannerViewBounds];
+    self.bannerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+
+    self.bannerView.delegate = _webViewBannerDelegate;
+
+    self.bannerView.backgroundColor = [UIColor whiteColor];
+
+    self.bannerView.clearsContextBeforeDrawing = YES;
+    self.bannerView.clipsToBounds = YES;
+    self.bannerView.contentMode = UIViewContentModeScaleToFill;
+    self.bannerView.multipleTouchEnabled = YES;
+    self.bannerView.opaque = NO;
+    self.bannerView.scalesPageToFit = NO;
+    self.bannerView.userInteractionEnabled = YES;
+
+    [self.bannerView loadHTMLString:[html description] baseURL:nil];
+//    [self.bannerView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.google.com"]]];
 
     // ******  SETTERS ********
     [self.toolbarTop addSubview:self.titleLabel];
@@ -626,9 +672,16 @@ NSString* _optLoading;
 
 
     [self.view addSubview:self.webView];
-    [self.view sendSubviewToBack:self.webView];
     [self.view addSubview:self.spinner];
     [self.view addSubview:self.loadingLabel];
+
+    [self.view sendSubviewToBack:self.webView];
+    if(_optBanner != nil){
+        [self.view addSubview:self.bannerView];
+        [self.view addSubview:self.bannerButton];
+    }
+
+//    [self.view sendSubviewToBack:self.bannerView];
 
 
 //    [self.toolbarTop setItems:@[self.closeButton]];
@@ -722,6 +775,13 @@ NSString* _optLoading;
 - (void)refresh{
     [self.webView reload];
 }
+
+
+- (void)openBanner
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_optUrlBanner]];
+}
+
 
 - (void)close
 {
@@ -831,7 +891,17 @@ NSString* _optLoading;
 
 - (void) rePositionViews {
 
-    [self.webView setFrame:CGRectMake(0.0f, 44.0f, self.view.bounds.size.width , self.view.bounds.size.height - 44.0f)];
+
+
+    [self.webView setFrame:CGRectMake(0.0f, 44.0f, self.view.bounds.size.width , self.view.bounds.size.height - (44.0f + (self.view.bounds.size.width / 6.4f)))];
+
+    if(_optBanner != nil){
+         [self.webView setFrame:CGRectMake(0.0f, 44.0f, self.view.bounds.size.width , self.view.bounds.size.height - (44.0f + (self.view.bounds.size.width / 6.4f)))];
+    }
+    else {
+         [self.webView setFrame:CGRectMake(0.0f, 44.0f, self.view.bounds.size.width , self.view.bounds.size.height - 44.0f)];
+    }
+
 
     [self.toolbarTop setFrame:CGRectMake(0.0f , 0.0f, self.view.bounds.size.width, 64.0f)];
 
@@ -840,6 +910,12 @@ NSString* _optLoading;
 
 
     [self.backButton setFrame:CGRectMake( 0.0f , 20.0f, 36.0f,  36.0f)];
+
+
+
+    [self.bannerView setFrame:CGRectMake(0.0f , 44.0f + self.webView.frame.size.height , self.view.bounds.size.width, (self.view.bounds.size.width / 6.4f))];
+
+    [self.bannerButton setFrame:CGRectMake(0.0f , 44.0f + self.webView.frame.size.height , self.view.bounds.size.width, (self.view.bounds.size.width / 6.4f))];
 
 
 

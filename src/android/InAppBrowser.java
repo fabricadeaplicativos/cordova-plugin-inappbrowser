@@ -78,6 +78,17 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 @SuppressLint("SetJavaScriptEnabled")
+
+// public class MyWebViewClient extends WebViewClient {
+//
+//      @Override
+//       public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//           view.loadUrl(url);
+//           return false;
+//       }
+// }
+
+
 public class InAppBrowser extends CordovaPlugin {
 
     private static final String NULL = "null";
@@ -112,6 +123,9 @@ public class InAppBrowser extends CordovaPlugin {
     public String optLoading = "";
     public String optBanner = "";
     public String optBannerUrl = "";
+
+
+
 
     public RelativeLayout progress;
 
@@ -750,6 +764,9 @@ public class InAppBrowser extends CordovaPlugin {
 
                 WebViewClient client = new InAppBrowserClient(thatWebView, edittext);
                 inAppWebView.setWebViewClient(client);
+
+
+
                 // inAppWebView.setMargins(this.dpToPixels(56), this.dpToPixels(56), this.dpToPixels(56), this.dpToPixels(56));
                 WebSettings settings = inAppWebView.getSettings();
                 settings.setJavaScriptEnabled(true);
@@ -875,6 +892,32 @@ public class InAppBrowser extends CordovaPlugin {
         EditText edittext;
         CordovaWebView webView;
 
+
+
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            //
+            if (url.startsWith("newtab:")) {
+                view.getContext().startActivity(
+                new Intent(Intent.ACTION_VIEW, Uri.parse(url.replace("newtab:", ""))));
+           }
+           else {
+               view.loadUrl(url); //load url in current WebView
+           }
+           return true;
+            // if (url != null  && url.toLowerCase().contains(".pdf")) {
+            //     view.getContext().startActivity(
+            //         new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            //     return true;
+            // } else {
+            //     return false;
+            // }
+            // WebView.HitTestResult result = view.getHitTestResult();
+            // String data = result.getExtra();
+            // Context context = view.getContext();
+            // Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(data));
+            // context.startActivity(browserIntent);
+            // return false;
+        }
         /**
          * Constructor.
          *
@@ -900,6 +943,7 @@ public class InAppBrowser extends CordovaPlugin {
                 newloc = url;
             }
             // If dialing phone (tel:5551212)
+
             else if (url.startsWith(WebView.SCHEME_TEL)) {
                 try {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -971,6 +1015,7 @@ public class InAppBrowser extends CordovaPlugin {
 
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            view.loadUrl("javascript: var allLinks = document.getElementsByTagName('a'); if (allLinks) {var i;for (i=0; i<allLinks.length; i++) {var link = allLinks[i];var target = link.getAttribute('target'); if (target && target == '_blank') {link.setAttribute('target','_self');link.href = 'newtab:'+link.href;}}}");
             progress.setVisibility(LinearLayout.GONE);
             try {
                 JSONObject obj = new JSONObject();

@@ -942,6 +942,19 @@ public class InAppBrowser extends CordovaPlugin {
             if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
                 newloc = url;
             }
+            else if (url.startsWith("rtsp:") || url.startsWith("rtps:")) {
+                try {
+
+
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    cordova.getActivity().startActivity(i);
+                    closeDialog();
+
+                } catch (android.content.ActivityNotFoundException e) {
+                    LOG.e(LOG_TAG, "Error with " + url + ": " + e.toString());
+                }
+            }
             // If dialing phone (tel:5551212)
 
             else if (url.startsWith(WebView.SCHEME_TEL)) {
@@ -953,6 +966,8 @@ public class InAppBrowser extends CordovaPlugin {
                     LOG.e(LOG_TAG, "Error dialing " + url + ": " + e.toString());
                 }
             }
+
+
 
             else if (url.startsWith("geo:") || url.startsWith(WebView.SCHEME_MAILTO) || url.startsWith("market:")) {
                 try {

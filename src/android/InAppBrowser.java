@@ -1015,7 +1015,7 @@ public class InAppBrowser extends CordovaPlugin {
 
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            view.loadUrl("javascript: var allLinks = document.getElementsByTagName('a'); if (allLinks) {var i;for (i=0; i<allLinks.length; i++) {var link = allLinks[i];var target = link.getAttribute('target'); if (target && target == '_blank') {link.setAttribute('target','_self');link.href = 'newtab:'+link.href;}}}");
+            view.loadUrl("javascript: var allLinks = document.getElementsByTagName('a'); function findlinks(){if (allLinks) {for (var i=0; i<allLinks.length; i++) {var link = allLinks[i]; var target = link.getAttribute('target'); if (target && target == '_blank') { link.href = 'newtab:'+link.href; } } } }findlinks();");
             progress.setVisibility(LinearLayout.GONE);
             try {
                 JSONObject obj = new JSONObject();

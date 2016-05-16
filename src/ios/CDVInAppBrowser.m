@@ -819,6 +819,13 @@ NSString* _optUrlBanner;
     });
 }
 
+-(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+{
+    if ( self.presentedViewController)
+    {
+        [super dismissViewControllerAnimated:flag completion:completion];
+    }
+}
 
 
 - (void)navigateTo:(NSURL*)url background:(NSString*) background color:(NSString*) color title:(NSString*) title loading:(NSString*) loading
@@ -1142,7 +1149,13 @@ NSString* _optUrlBanner;
     [super viewDidLoad];
 }
 
-
+-(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion
+{
+    if ( self.presentedViewController)
+    {
+        [super dismissViewControllerAnimated:flag completion:completion];
+    }
+}
 #pragma mark CDVScreenOrientationDelegate
 
 - (BOOL)shouldAutorotate

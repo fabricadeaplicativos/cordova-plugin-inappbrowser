@@ -671,7 +671,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 actionButtonContainer.setHorizontalGravity(Gravity.RIGHT);
                 actionButtonContainer.setVerticalGravity(Gravity.CENTER_VERTICAL);
-                actionButtonContainer.setId(1);
+                actionButtonContainer.setId(Integer.valueOf(1));
 
                 Resources activityRes = cordova.getActivity().getResources();
 
@@ -694,7 +694,7 @@ public class InAppBrowser extends CordovaPlugin {
                 titleParams.addRule(RelativeLayout.CENTER_IN_PARENT);
                 title.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
                 titleParams.addRule(RelativeLayout.RIGHT_OF, 1);
-                title.setId(4);
+                title.setId(Integer.valueOf(4));
                 title.setLayoutParams(titleParams);
                 title.setSingleLine(true);
                 title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
@@ -709,7 +709,7 @@ public class InAppBrowser extends CordovaPlugin {
                 closeLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
                 close.setLayoutParams(closeLayoutParams);
                 // forward.setContentDescription("Close Button");
-                close.setId(5);
+                close.setId(Integer.valueOf(5));
                 int closeResId;
                 if(optColor.equals("#ffffff")){
                     closeResId = activityRes.getIdentifier("androidwhitearrowleft", "drawable", cordova.getActivity().getPackageName());
@@ -791,7 +791,7 @@ public class InAppBrowser extends CordovaPlugin {
                 }
 
                 inAppWebView.loadUrl(url);
-                inAppWebView.setId(6);
+                inAppWebView.setId(Integer.valueOf(6));
                 inAppWebView.getSettings().setLoadWithOverviewMode(true);
                 inAppWebView.getSettings().setUseWideViewPort(true);
                 inAppWebView.requestFocus();
